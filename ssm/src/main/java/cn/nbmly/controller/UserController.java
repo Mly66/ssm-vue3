@@ -2,13 +2,16 @@ package cn.nbmly.controller;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import cn.nbmly.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.nbmly.service.UserService;
@@ -60,14 +63,16 @@ public class UserController {
     @RequestMapping("/createUser")
     @ResponseBody
     @CrossOrigin
-    public Integer createUser(User user, HttpServletResponse response) {
+    public Integer createUser(@RequestBody User user) {
+        // 生成一个唯一的 userId
         Random random = new Random();
         Integer number = random.nextInt(9000) + 1000;
         user.setUserId(System.currentTimeMillis() + String.valueOf(number));
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Cache-Control", "no-cache");
+
+        // 调用服务层方法进行用户创建
         return userService.createUser(user);
     }
+
 
     @RequestMapping("/deleteUserById")
     @ResponseBody
@@ -81,26 +86,34 @@ public class UserController {
     @RequestMapping(value = "/deleteUserByIdList")
     @ResponseBody
     @CrossOrigin
-    public Integer deleteUserByIdList(String userIdList, HttpServletResponse response) {
-        String userIdListSub = userIdList.substring(0, userIdList.length() - 1);
-//        String[] userIds = userIdList.split(",");
-
-        List userIds = new ArrayList();
-        for (String userIdStr : userIdListSub.split(",")) {
-            userIds.add(userIdStr.trim());
-        }
+    public Integer deleteUserByIdList(@RequestBody List<String> userIdList, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Cache-Control", "no-cache");
-        return userService.deleteUserByIdList(userIds);
+
+        if (userIdList == null || userIdList.isEmpty()) {
+            return 0;
+        }
+
+        return userService.deleteUserByIdList(userIdList);
     }
+
 
     @RequestMapping("/updateUserById")
     @ResponseBody
     @CrossOrigin
-    public Integer updateUserById(User user, HttpServletResponse response) {
+    public Integer updateUserById(@RequestBody User user, HttpServletResponse response) {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Cache-Control", "no-cache");
         return userService.updateUserById(user);
+    }
+
+    @RequestMapping("/fetchUserById")
+    @ResponseBody
+    @CrossOrigin()
+    public List<User> fetchUserById(String userId, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Cache-Control", "no-cache");
+        return userService.fetchUserById(userId);
     }
 
 

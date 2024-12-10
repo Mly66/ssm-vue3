@@ -1,7 +1,6 @@
 package cn.nbmly.dao;
 
 
-
 import java.util.List;
 
 import cn.nbmly.entity.User;
@@ -12,6 +11,7 @@ public interface UserMapper {
 
     /**
      * 分页查询 User
+     *
      * @param startRows 起始页
      * @return List<User>
      */
@@ -19,23 +19,26 @@ public interface UserMapper {
 
     /**
      * 分页查询 User 带条件
+     *
      * @param userName
      * @param userSex
      * @param startRows
      * @return
      */
-    List<User> selectUserPage(@Param("userName")String userName, @Param("userSex")String userSex, @Param("startRows")Integer startRows);
+    List<User> selectUserPage(@Param("userName") String userName, @Param("userSex") String userSex, @Param("startRows") Integer startRows);
 
     /**
      * 查询 User 个数
+     *
      * @param userName
      * @param userSex
      * @return
      */
-    Integer getRowCount(@Param("userName")String userName, @Param("userSex")String userSex);
+    Integer getRowCount(@Param("userName") String userName, @Param("userSex") String userSex);
 
     /**
      * 添加 User
+     *
      * @param user
      * @return 返回码
      */
@@ -43,31 +46,40 @@ public interface UserMapper {
 
     /**
      * 根据 userId 删除用户
+     *
      * @return 返回码
      */
     Integer deleteUserById(String userId);
 
     /**
      * 根据 userId 批量删除用户
-     * @param userIds
-     * @return
+     *
+     * @param userIds 用户 ID 列表
+     * @return 删除的记录数
      */
-    Integer deleteUserByIdList(@Param("list") List userIds);
+    Integer deleteUserByIdList(@Param("list") List<String> userIds);
 
     /**
      * 根据 userId 更新用户
+     *
      * @return 返回码
      */
     Integer updateUserById(User user);
 
 
-
     /**
      * 查询所有用户信息
+     *
      * @return
      */
     List<User> findAll();
 
+    /**
+     * 根据 userId 获取用户
+     *
+     * @return 返回码
+     */
+    List<User> fetchUserById(String userId);
 }
 
 

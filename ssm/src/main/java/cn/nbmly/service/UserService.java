@@ -59,6 +59,12 @@ public interface UserService {
      */
     Integer updateUserById(User user);
 
+    /**
+     * 根据 userId 获取用户
+     * @return 返回码
+     */
+    List<User> fetchUserById(String userId);
+
 
     /**
      * 查询所有用户信息

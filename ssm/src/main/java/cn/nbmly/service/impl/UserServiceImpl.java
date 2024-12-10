@@ -1,6 +1,9 @@
 package cn.nbmly.service.impl;
+
 import cn.nbmly.service.UserService;
+
 import java.util.List;
+
 import cn.nbmly.entity.User;
 
 import org.apache.ibatis.annotations.Param;
@@ -49,6 +52,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Integer updateUserById(User user) {
         return userMapper.updateUserById(user);
+    }
+
+    @Override
+    public List<User> fetchUserById(String userId) {
+        return userMapper.fetchUserById(userId);
     }
 
     @Override

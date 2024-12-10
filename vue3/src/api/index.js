@@ -35,15 +35,38 @@ export const deleteUserById = (userId) => {
 
 // 根据ID批量删除用户
 export const deleteUserByIdList = (userIdList) => {
-  const postData = new URLSearchParams({ userIdList }).toString();
-
-  return request.post('/user/deleteUserByIdList', postData, { withCredentials: true });
+  return request.post(
+    '/user/deleteUserByIdList',
+    userIdList,
+    {
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    }
+  );
 };
 
+// 根据用户ID获取个人信息
+export const fetchUserById = (userId) => {
+  return request.get(`/user/fetchUserById`, {
+    params: { userId }, 
+    withCredentials: true,
+  });
+};
 // 更新用户信息
 export const updateUserById = (user) => {
-  return request.post('/user/updateUserById', user, { withCredentials: true });
+  const postData = new URLSearchParams({
+    userId: user.userId,
+    cardNo: user.cardNo,
+    cardType: user.cardType,
+    userName: user.userName,
+    userSex: user.userSex,
+    userAge: user.userAge,
+    userRole: user.userRole
+  }).toString();
+
+  return request.post('/user/updateUserById', postData, { withCredentials: true });
 };
+
 
 // 获取所有用户
 export const findAll = () => {
