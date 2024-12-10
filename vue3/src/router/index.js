@@ -5,12 +5,17 @@ import Home from '@/components/Home.vue';
 import Welcome from '@/components/UserDetail.vue';
 import Add from '@/components/Add.vue';
 import EditUser from '@/components/EditUser.vue';
-
+import Register from '@/components/Register.vue'
 const routes = [
   {
     path: '/login',
     name: 'login',
     component: Login
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: Register
   },
   {
     path: '/home',
@@ -19,7 +24,7 @@ const routes = [
     redirect: '/home/welcome',
     children: [
       {
-        path: 'welcome',
+        path: 'welcome/:username',
         name: 'welcome',
         component: Welcome,
         props: true
@@ -37,7 +42,8 @@ const routes = [
       {
         path: 'EditUser',
         name: 'EditUser',
-        component: EditUser
+        component: EditUser,
+        props: true
       }
     ]
   },
@@ -53,14 +59,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path === '/login') {
+  const token = localStorage.getItem('token');
+  if (!token && (to.path === '/login' || to.path === '/register')) {
     return next();
   }
-  const token = localStorage.getItem('token');
   if (!token) {
     return next('/login');
   }
   next();
 });
+
 
 export default router;

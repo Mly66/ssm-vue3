@@ -7,10 +7,10 @@
 </template>
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
+import { defineProps } from 'vue';
 
-const route = useRoute();
-const username = route.params.username;
+const props = defineProps(['username']);
 
 const router = useRouter();
 const goBack = () => {
@@ -18,6 +18,7 @@ const goBack = () => {
   localStorage.removeItem('token');
 };
 </script>
+
 
 <style scoped>
 button {

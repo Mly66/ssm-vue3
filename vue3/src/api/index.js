@@ -54,21 +54,25 @@ export const fetchUserById = (userId) => {
 };
 // 更新用户信息
 export const updateUserById = (user) => {
-  const postData = new URLSearchParams({
-    userId: user.userId,
-    cardNo: user.cardNo,
-    cardType: user.cardType,
-    userName: user.userName,
-    userSex: user.userSex,
-    userAge: user.userAge,
-    userRole: user.userRole
-  }).toString();
-
-  return request.post('/user/updateUserById', postData, { withCredentials: true });
+  // 使用 JSON 格式发送数据
+  return request.post('/user/updateUserById', user, {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true
+  });
 };
 
 
 // 获取所有用户
 export const findAll = () => {
   return request.post('/user/findAll', {}, { withCredentials: true });
+};
+
+// 验证密码
+export const tryPassword = (admin) => {
+  return request.post('/admin/tryPassword', admin, { withCredentials: true });
+};
+
+// 添加管理员
+export const insertAdmin = (admin) => {
+  return request.post('/admin/insertAdmin', admin, { withCredentials: true });
 };
