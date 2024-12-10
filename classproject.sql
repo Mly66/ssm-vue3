@@ -11,11 +11,54 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 10/12/2024 13:49:21
+ Date: 11/12/2024 01:00:42
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for admin
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin`  (
+  `account` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '88888888',
+  `role` int NOT NULL DEFAULT 0,
+  PRIMARY KEY (`account`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = COMPACT;
+
+-- ----------------------------
+-- Records of admin
+-- ----------------------------
+INSERT INTO `admin` VALUES ('15968163514764733', '88888888', 1);
+INSERT INTO `admin` VALUES ('15968165113694372', '88888888', 1);
+INSERT INTO `admin` VALUES ('15968165371931786', '88888888', 1);
+INSERT INTO `admin` VALUES ('15968944123869023', '88888888', 1);
+INSERT INTO `admin` VALUES ('15968953962316864', '88888888', 1);
+INSERT INTO `admin` VALUES ('15968954638794962', '88888888', 1);
+INSERT INTO `admin` VALUES ('16255514079095454', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337579207236949', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337580453379264', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337581171881987', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337581281857900', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583150794622', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583150949504', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583151045381', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583151154566', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583151259024', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583151341817', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583151457376', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583151551505', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337583151757900', '88888888', 1);
+INSERT INTO `admin` VALUES ('17337585850182904', '88888888', 1);
+INSERT INTO `admin` VALUES ('17338127645894805', '88888888', 1);
+INSERT INTO `admin` VALUES ('admin', 'admin', 0);
+INSERT INTO `admin` VALUES ('adminadmin', 'adminadmin', 0);
+INSERT INTO `admin` VALUES ('adminmly', 'adminmly', 0);
+INSERT INTO `admin` VALUES ('adminzjz', 'adminzjz', 0);
+INSERT INTO `admin` VALUES ('rootmly', 'rootmly', 0);
+INSERT INTO `admin` VALUES ('rootmlys', 'rootmly', 0);
 
 -- ----------------------------
 -- Table structure for user
@@ -54,8 +97,46 @@ INSERT INTO `user` VALUES ('17337583151259024', '身份证', '510108198806090021
 INSERT INTO `user` VALUES ('17337583151341817', '身份证', '370203198907100016', '孙八', '男', '31', '技术支持');
 INSERT INTO `user` VALUES ('17337583151457376', '身份证', '330106198512120021', '周九', '女', '34', '市场经理');
 INSERT INTO `user` VALUES ('17337583151551505', '身份证', '210102198310050034', '吴十', '男', '38', '财务总监');
-INSERT INTO `user` VALUES ('17337583151659724', '身份证', '410105198708090059', '郑十一', '女', '30', '人力资源');
 INSERT INTO `user` VALUES ('17337583151757900', '身份证', '330106199001120021', '王十二', '男', '25', '实习生');
 INSERT INTO `user` VALUES ('17337585850182904', '身份证', '123489648', '按实际考虑到', '男', '19', '你们');
+INSERT INTO `user` VALUES ('17338127645894805', '身份证', '15641651163', '你好', '女', '19', '员工');
+
+-- ----------------------------
+-- Triggers structure for table user
+-- ----------------------------
+DROP TRIGGER IF EXISTS `after_user_insert`;
+delimiter ;;
+CREATE TRIGGER `after_user_insert` AFTER INSERT ON `user` FOR EACH ROW BEGIN
+  INSERT INTO `admin` (`account`, `password`, `role`) 
+  VALUES (NEW.`user_id`, '88888888', 1);
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Triggers structure for table user
+-- ----------------------------
+DROP TRIGGER IF EXISTS `after_user_delete`;
+delimiter ;;
+CREATE TRIGGER `after_user_delete` AFTER DELETE ON `user` FOR EACH ROW BEGIN
+  DELETE FROM `admin` WHERE `account` = OLD.`user_id`;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Triggers structure for table user
+-- ----------------------------
+DROP TRIGGER IF EXISTS `after_user_update`;
+delimiter ;;
+CREATE TRIGGER `after_user_update` AFTER UPDATE ON `user` FOR EACH ROW BEGIN
+  IF OLD.`user_id` != NEW.`user_id` THEN
+    DELETE FROM `admin` WHERE `account` = OLD.`user_id`;
+    INSERT INTO `admin` (`account`, `password`, `role`) 
+    VALUES (NEW.`user_id`, '88888888', 1);
+  END IF;
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;
