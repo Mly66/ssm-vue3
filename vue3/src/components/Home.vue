@@ -49,11 +49,10 @@ const activeIndex = ref('1');
 // 从 localStorage 获取用户信息
 const userInfo = ref(localStorage.getItem('userInfo') || '');
 
-// 退出登录
 const tuichu = () => {
   router.push('/login');
   localStorage.removeItem('token');
-  localStorage.removeItem('userInfo'); // 移除用户信息
+  localStorage.removeItem('userInfo');
 };
 </script>
 

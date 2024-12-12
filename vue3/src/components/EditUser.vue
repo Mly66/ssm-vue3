@@ -67,7 +67,7 @@ onMounted(() => {
 
       if (userData) {
         userForm.value = {
-          userId: userId, // 添加 userId
+          userId: userId, 
           userName: userData.userName || '',
           cardType: userData.cardType || '',
           cardNo: userData.cardNo || '',
@@ -115,7 +115,7 @@ const handleSubmit = () => {
 }
 
 .form-item label {
-  width: 100px; /* 标签固定宽度 */
+  width: 100px; 
   text-align: right;
   margin-right: 10px;
   font-weight: bold;
