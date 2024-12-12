@@ -119,13 +119,4 @@
         from user
     </select>
 
-    <!-- 验证用户账号和密码 -->
-    <select id="tryPassword" parameterType="map" resultType="int">
-        SELECT COUNT(*)
-        FROM admin
-        WHERE account = #{account}
-          AND password = #{password}
-          AND role = #{role}
-    </select>
-
 </mapper>

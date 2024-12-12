@@ -5,7 +5,14 @@ import Home from '@/components/Home.vue';
 import Welcome from '@/components/UserDetail.vue';
 import Add from '@/components/Add.vue';
 import EditUser from '@/components/EditUser.vue';
-import Register from '@/components/Register.vue'
+import Register from '@/components/Register.vue';
+import About from '@/components/About.vue';
+import Update from '@/components/Update.vue';
+import img from '@/components/img.vue';
+import Password from '@/components/Password.vue';
+import work from '@/components/Work.vue';
+import come from '@/components/Come.vue';
+
 const routes = [
   {
     path: '/login',
@@ -44,6 +51,50 @@ const routes = [
         name: 'EditUser',
         component: EditUser,
         props: true
+      },
+      {
+        path: 'About',
+        name: 'About',
+        component: About,
+      },
+      {
+        path: 'Update',
+        name: 'Update',
+        component: Update,
+      },
+      {
+        path: 'Password',
+        name: 'Password',
+        component: Password,
+      }
+    ]
+  },
+  {
+    path: '/work',
+    name: 'work',
+    component: work,
+    redirect: '/work/welcome',
+    children: [
+      {
+        path: 'welcome/:username',
+        name: 'welcome',
+        component: Welcome,
+        props: true
+      },
+      {
+        path: 'come',
+        name: 'come',
+        component: come,
+      },
+      {
+        path: 'Update',
+        name: 'Update',
+        component: Update,
+      },
+      {
+        path: 'Password',
+        name: 'Password',
+        component: Password,
       }
     ]
   },
@@ -68,6 +119,5 @@ router.beforeEach((to, from, next) => {
   }
   next();
 });
-
 
 export default router;

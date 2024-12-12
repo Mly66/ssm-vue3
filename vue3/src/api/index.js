@@ -54,7 +54,6 @@ export const fetchUserById = (userId) => {
 };
 // 更新用户信息
 export const updateUserById = (user) => {
-  // 使用 JSON 格式发送数据
   return request.post('/user/updateUserById', user, {
     headers: { 'Content-Type': 'application/json' },
     withCredentials: true
@@ -75,4 +74,20 @@ export const tryPassword = (admin) => {
 // 添加管理员
 export const insertAdmin = (admin) => {
   return request.post('/admin/insertAdmin', admin, { withCredentials: true });
+};
+
+// 根据管理员账号获取管理员信息
+export const fetchAdminById = (account) => {
+  return request.get(`/admin/fetchAdminById`, {
+    params: { account }, 
+    withCredentials: true,
+  });
+};
+
+// 更新用户信息
+export const updateAdminById = (admin) => {
+  return request.post('/admin/updateAdminById', admin, {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true
+  });
 };

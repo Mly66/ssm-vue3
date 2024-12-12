@@ -4,16 +4,19 @@
 
     <!-- ResultMap 映射 -->
     <resultMap id="BaseResultMap" type="cn.nbmly.entity.Admin">
-        <id property="account" column="account" jdbcType="VARCHAR" /> <!-- 用户账号 -->
-        <result property="password" column="password" jdbcType="VARCHAR" /> <!-- 密码 -->
-        <result property="role" column="role" jdbcType="INTEGER" /> <!-- 角色 -->
+        <id property="account" column="account" jdbcType="VARCHAR"/> <!-- 用户账号 -->
+        <result property="password" column="password" jdbcType="VARCHAR"/> <!-- 密码 -->
+        <result property="role" column="role" jdbcType="INTEGER"/> <!-- 角色 -->
+        <result property="picurl" column="picurl" jdbcType="VARCHAR"/> <!-- 图片 -->
     </resultMap>
 
     <!-- 验证管理员账号 -->
     <select id="tryPassword" parameterType="map" resultType="int">
         SELECT COUNT(*)
         FROM admin
-        WHERE account = #{account} AND password = #{password} AND role = #{role}
+        WHERE account = #{account}
+          AND password = #{password}
+          AND role = #{role}
     </select>
 
     <!-- 添加管理员 -->
@@ -28,5 +31,23 @@
         SET password = #{password}
         WHERE account = #{account}
     </update>
+
+    <!-- 根据管理员账户获取管理员信息 -->
+    <select id="fetchAdminById" parameterType="string" resultMap="BaseResultMap">
+        SELECT account, password, role, picurl
+        FROM admin
+        WHERE account = #{account}
+    </select>
+
+    <!-- 根据管理员账号更新管理员信息 -->
+<update id="updateAdminById" parameterType="cn.nbmly.entity.Admin">
+    UPDATE admin
+    SET
+        password = #{password},
+        role = #{role},
+        picurl = #{picurl}
+    WHERE account = #{account}
+</update>
+
 
 </mapper>

@@ -11,7 +11,7 @@
  Target Server Version : 80037
  File Encoding         : 65001
 
- Date: 11/12/2024 01:00:42
+ Date: 12/12/2024 23:51:05
 */
 
 SET NAMES utf8mb4;
@@ -25,40 +25,44 @@ CREATE TABLE `admin`  (
   `account` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '88888888',
   `role` int NOT NULL DEFAULT 0,
+  `picurl` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg',
   PRIMARY KEY (`account`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES ('15968163514764733', '88888888', 1);
-INSERT INTO `admin` VALUES ('15968165113694372', '88888888', 1);
-INSERT INTO `admin` VALUES ('15968165371931786', '88888888', 1);
-INSERT INTO `admin` VALUES ('15968944123869023', '88888888', 1);
-INSERT INTO `admin` VALUES ('15968953962316864', '88888888', 1);
-INSERT INTO `admin` VALUES ('15968954638794962', '88888888', 1);
-INSERT INTO `admin` VALUES ('16255514079095454', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337579207236949', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337580453379264', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337581171881987', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337581281857900', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583150794622', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583150949504', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583151045381', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583151154566', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583151259024', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583151341817', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583151457376', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583151551505', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337583151757900', '88888888', 1);
-INSERT INTO `admin` VALUES ('17337585850182904', '88888888', 1);
-INSERT INTO `admin` VALUES ('17338127645894805', '88888888', 1);
-INSERT INTO `admin` VALUES ('admin', 'admin', 0);
-INSERT INTO `admin` VALUES ('adminadmin', 'adminadmin', 0);
-INSERT INTO `admin` VALUES ('adminmly', 'adminmly', 0);
-INSERT INTO `admin` VALUES ('adminzjz', 'adminzjz', 0);
-INSERT INTO `admin` VALUES ('rootmly', 'rootmly', 0);
-INSERT INTO `admin` VALUES ('rootmlys', 'rootmly', 0);
+INSERT INTO `admin` VALUES ('15968163514764733', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('15968165113694372', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('15968165371931786', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('15968944123869023', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('15968953962316864', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('15968954638794962', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('16255514079095454', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337579207236949', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337580453379264', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337581171881987', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337581281857900', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583150794622', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583150949504', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583151045381', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583151154566', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583151259024', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583151341817', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583151457376', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583151551505', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337583151757900', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17337585850182904', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('17338961939325750', '88888888', 1, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('admin', '888888', 0, 'https://free-img.400040.xyz/4/2024/12/12/675afc632308b.jpg');
+INSERT INTO `admin` VALUES ('adminadmin', 'adminadmin', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('adminmly', 'adminmly', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('adminzjz', 'adminzjz', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('hhhhhhh', 'hhhhhhh', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('nbmly', 'nbmly', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('rootmly', 'rootmly', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('rootmlys', 'rootmly', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
+INSERT INTO `admin` VALUES ('zjzzjz', 'zjzzjz', 0, 'https://free-img.mofashi.ltd/5/2024/12/11/6759a93d78a9c.jpg');
 
 -- ----------------------------
 -- Table structure for user
@@ -99,7 +103,7 @@ INSERT INTO `user` VALUES ('17337583151457376', '身份证', '330106198512120021
 INSERT INTO `user` VALUES ('17337583151551505', '身份证', '210102198310050034', '吴十', '男', '38', '财务总监');
 INSERT INTO `user` VALUES ('17337583151757900', '身份证', '330106199001120021', '王十二', '男', '25', '实习生');
 INSERT INTO `user` VALUES ('17337585850182904', '身份证', '123489648', '按实际考虑到', '男', '19', '你们');
-INSERT INTO `user` VALUES ('17338127645894805', '身份证', '15641651163', '你好', '女', '19', '员工');
+INSERT INTO `user` VALUES ('17338961939325750', '身份证', '202206011111111111', 'sss', '男', '44', '员工');
 
 -- ----------------------------
 -- Triggers structure for table user

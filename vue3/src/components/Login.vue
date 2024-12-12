@@ -40,12 +40,12 @@
 import { ElMessage } from 'element-plus';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { tryPassword } from '../api/index'; // 引入后端验证函数
+import { tryPassword } from '../api/index';
 
 const loginForm = ref({
   username: '',
   password: '',
-  role: 0 // 默认管理员
+  role: 0
 });
 const ruleFormRef = ref();
 const router = useRouter();
@@ -53,17 +53,22 @@ const router = useRouter();
 const submitForm = async () => {
   ruleFormRef.value.validate(async (valid) => {
     if (valid) {
+      localStorage.setItem('userInfo', `${loginForm.value.role === 0 ? '管理员' : '员工'}:${loginForm.value.username}`);
       try {
-        // 调用后端 API 验证密码
         const response = await tryPassword({
           account: loginForm.value.username,
           password: loginForm.value.password,
           role: loginForm.value.role 
         });
-        if (response && response.data === 1) { // 判断返回值是否为 1
-          localStorage.setItem('token', 'NBMLY'); // 设置 token
+        if (response && response.data === 1) { 
+          localStorage.setItem('token', 'NBMLY'); 
           ElMessage.success('登录成功');
-          router.push({ path: `/home/welcome/${loginForm.value.username}` });
+          // 根据角色选择跳转路径
+          if (loginForm.value.role === 0) {
+            router.push({ path: `/home/welcome/${loginForm.value.username}` });
+          } else {
+            router.push({ path: `/work/welcome/${loginForm.value.username}` });
+          }
         } else {
           ElMessage.error('用户名或密码或角色错误');
         }
@@ -75,6 +80,7 @@ const submitForm = async () => {
     }
   });
 };
+
 
 const resetForm = () => {
   ruleFormRef.value.resetFields();

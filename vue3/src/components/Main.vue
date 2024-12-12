@@ -13,7 +13,7 @@
       </el-form-item>
       <el-form-item>
         <el-button class="el-icon-delete" type="text" @click="handleDeleteList">
-          批量删除
+          批量辞退
         </el-button>
       </el-form-item>
     </el-form>
@@ -58,20 +58,20 @@
             <span>{{ scope.row.userRole }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="修改">
+        <el-table-column label="管理">
           <template #default="scope">
             <div class="action-buttons">
               <el-button type="primary" round @click="handleEdit(scope.$index, scope.row)">
-                飞升
+                信息修改
               </el-button>
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="删除">
+        <el-table-column label="辞退">
           <template #default="scope">
             <div class="action-buttons">
               <el-button type="danger" round @click="handleDelete(scope.$index, scope.row)">
-                销户
+                确认辞退
               </el-button>
             </div>
           </template>
@@ -89,9 +89,9 @@
 import { ref, reactive, onMounted } from "vue";
 import { ElMessageBox, ElMessage } from "element-plus";
 import { fetchUsers, fetchUserCount, deleteUserById, deleteUserByIdList } from '../api/index';
-import { useRouter } from 'vue-router'; // 导入useRouter以获取router对象
+import { useRouter } from 'vue-router'; 
 
-const router = useRouter(); // 获取router对象
+const router = useRouter();
 
 const ruleForm = reactive({
   userId: null,
@@ -140,7 +140,7 @@ const handleEdit = (index, row) => {
 };
 
 const handleDelete = (index, row) => {
-  ElMessageBox.confirm("确认删除?", "提示", {
+  ElMessageBox.confirm("《劳动合同法》第八十七条 用人单位违反本法规定解除或者终止劳动合同的，应当依照本法第四十七条规定的经济补偿标准的二倍向劳动者支付赔偿金", "《劳动法》提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     type: "warning",
@@ -149,23 +149,23 @@ const handleDelete = (index, row) => {
       deleteUserById(row.userId)
         .then(() => {
           fetchData();
-          ElMessage.success("删除成功!");
+          ElMessage.success("辞退成功!");
         })
         .catch((error) => console.log(error));
     })
     .catch(() => {
-      ElMessage.info("已取消删除");
+      ElMessage.info("已取消辞退");
     });
 };
 
 const handleDeleteList = () => {
   if (multipleSelection.value.length === 0) {
-    ElMessage.warning("请先选择要删除的用户！");
+    ElMessage.warning("请先选择要辞退的用户！");
     return;
   }
 
   const userIdList = multipleSelection.value.map((item) => item.userId);
-  ElMessageBox.confirm("确认删除选中的用户?", "提示", {
+  ElMessageBox.confirm("确认辞退选中的用户?", "提示", {
     confirmButtonText: "确定",
     cancelButtonText: "取消",
     type: "warning",
@@ -174,15 +174,15 @@ const handleDeleteList = () => {
       deleteUserByIdList(userIdList)
         .then(() => {
           fetchData();
-          ElMessage.success("删除成功!");
+          ElMessage.success("辞退成功!");
         })
         .catch((error) => {
-          console.error("删除失败: ", error);
-          ElMessage.error("删除失败，请稍后重试！");
+          console.error("辞退失败: ", error);
+          ElMessage.error("辞退失败，请稍后重试！");
         });
     })
     .catch(() => {
-      ElMessage.info("已取消删除");
+      ElMessage.info("已取消辞退");
     });
 };
 

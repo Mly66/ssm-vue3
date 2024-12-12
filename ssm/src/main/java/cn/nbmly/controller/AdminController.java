@@ -38,4 +38,21 @@ public class AdminController {
         return adminService.insertAdmin(admin);
     }
 
+    @RequestMapping("/fetchAdminById")
+    @ResponseBody
+    @CrossOrigin()
+    public List<Admin> fetchAdminById(String account, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Cache-Control", "no-cache");
+        return adminService.fetchAdminById(account);
+    }
+
+    @RequestMapping("/updateAdminById")
+    @ResponseBody
+    @CrossOrigin
+    public Integer updateUserById(@RequestBody Admin admin, HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Cache-Control", "no-cache");
+        return adminService.updateAdminById(admin);
+    }
 }
