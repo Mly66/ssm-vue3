@@ -52,7 +52,6 @@
   });
   
   const updatePassword = async () => {
-    // Validation to check if new password and confirm password match
     if (admin.value.newPassword !== admin.value.confirmPassword) {
       ElMessage.error('新密码和确认密码不一致');
       return;
@@ -61,7 +60,7 @@
     try {
       await updateAdminById({
         account: admin.value.account,
-        password: admin.value.newPassword, // Send the new password
+        password: admin.value.newPassword,
         role: admin.value.role,
         picurl: admin.value.picurl,
       });

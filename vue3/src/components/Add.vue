@@ -39,10 +39,8 @@
   import { ElMessage } from 'element-plus';
   import { createUser } from '@/api/index';
   
-  // 使用 ref 来定义 form 的引用
   const userForm = ref(null);
   
-  // 定义表单数据
   const ruleForm = reactive({
     cardType: null,
     cardNo: null,
@@ -52,7 +50,6 @@
     userRole: null,
   });
   
-  // 表单验证规则
   const rules = {
     cardType: [{ required: true, message: '请选择卡类型', trigger: 'change' }],
     cardNo: [{ required: true, message: '卡号不能为空', trigger: 'blur' }],
@@ -67,7 +64,6 @@
 
   userForm.value.validate((valid) => {
     if (valid) {
-      // 提交表单数据
       createUser(form)
         .then((res) => {
           ElMessage.success('用户创建成功！');

@@ -36,7 +36,7 @@
   const admin = ref({
     account: '',
     password: '',
-    role: 0,
+    role: 1,
     picurl: '',
   });
   
