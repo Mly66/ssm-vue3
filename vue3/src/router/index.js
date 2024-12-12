@@ -8,11 +8,12 @@ import EditUser from '@/components/EditUser.vue';
 import Register from '@/components/Register.vue';
 import About from '@/components/About.vue';
 import Update from '@/components/Update.vue';
-import img from '@/components/img.vue';
 import Password from '@/components/Password.vue';
 import work from '@/components/Work.vue';
-import come from '@/components/Come.vue';
-
+import come from '@/components/work/Come.vue';
+import pass from '@/components/work/pass.vue';
+import up from '@/components/work/up.vue';
+import worker from '@/components/work/worker.vue';
 const routes = [
   {
     path: '/login',
@@ -73,12 +74,12 @@ const routes = [
     path: '/work',
     name: 'work',
     component: work,
-    redirect: '/work/welcome',
+    redirect: '/work/worker',
     children: [
       {
-        path: 'welcome/:username',
-        name: 'welcome',
-        component: Welcome,
+        path: 'worker/:username',
+        name: 'worker',
+        component: worker,
         props: true
       },
       {
@@ -87,14 +88,14 @@ const routes = [
         component: come,
       },
       {
-        path: 'Update',
-        name: 'Update',
-        component: Update,
+        path: 'up',
+        name: 'up',
+        component: up,
       },
       {
-        path: 'Password',
-        name: 'Password',
-        component: Password,
+        path: 'pass',
+        name: 'pass',
+        component: pass,
       }
     ]
   },

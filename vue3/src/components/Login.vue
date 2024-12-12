@@ -63,11 +63,10 @@ const submitForm = async () => {
         if (response && response.data === 1) { 
           localStorage.setItem('token', 'NBMLY'); 
           ElMessage.success('登录成功');
-          // 根据角色选择跳转路径
           if (loginForm.value.role === 0) {
             router.push({ path: `/home/welcome/${loginForm.value.username}` });
           } else {
-            router.push({ path: `/work/welcome/${loginForm.value.username}` });
+            router.push({ path: `/work/worker/${loginForm.value.username}` });
           }
         } else {
           ElMessage.error('用户名或密码或角色错误');

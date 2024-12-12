@@ -13,10 +13,10 @@
             <router-link to="/work/come">
               <el-menu-item index="1">加薪秘籍</el-menu-item>
             </router-link>
-            <router-link to="/work/Update">
+            <router-link to="/work/up">
               <el-menu-item index="2">信息更新</el-menu-item>
             </router-link>
-            <router-link to="/work/Password">
+            <router-link to="/work/pass">
               <el-menu-item index="3">修改密码</el-menu-item>
             </router-link>
             <el-menu-item index="4">
