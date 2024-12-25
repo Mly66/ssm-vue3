@@ -27,7 +27,7 @@
         </el-aside>
         <el-container>
           <el-main><router-view></router-view></el-main>
-          <el-footer>人事管理系统 ©2024 Created by Mly798798@163.com</el-footer>
+          <el-footer>赛博人力智联 ©2024 Created by Mly798798@163.com</el-footer>
         </el-container>
       </el-container>
     </el-container>

@@ -5,11 +5,11 @@
         <el-input v-model="search1" size="small" placeholder="输入姓名查询" @input="handleSearch" />
       </el-form-item>
       <el-form-item>
-        <el-select size="small" v-model="search2" @change="handleSearch">
-          <el-option label="请选择性别" value="" />
-          <el-option label="男" value="男" />
-          <el-option label="女" value="女" />
-        </el-select>
+        <select size="small" v-model="search2" @change="handleSearch">
+          <option label="请选择性别" value="" />
+          <option label="男" value="男" />
+          <option label="女" value="女" />
+        </select>
       </el-form-item>
       <el-form-item>
         <el-button class="el-icon-delete" type="text" @click="handleDeleteList">
