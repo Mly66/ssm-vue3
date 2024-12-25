@@ -1,4 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import {
+  createRouter,
+  createWebHistory
+} from 'vue-router';
 import Login from '@/components/Login.vue';
 import Main from '@/components/Main.vue';
 import Home from '@/components/Home.vue';
@@ -14,8 +17,9 @@ import come from '@/components/work/Come.vue';
 import pass from '@/components/work/pass.vue';
 import up from '@/components/work/up.vue';
 import worker from '@/components/work/worker.vue';
-const routes = [
-  {
+import { ElMessage } from 'element-plus';
+
+const routes = [{
     path: '/login',
     name: 'login',
     component: Login
@@ -30,8 +34,7 @@ const routes = [
     name: 'home',
     component: Home,
     redirect: '/home/welcome',
-    children: [
-      {
+    children: [{
         path: 'welcome/:username',
         name: 'welcome',
         component: Welcome,
@@ -67,20 +70,6 @@ const routes = [
         path: 'Password',
         name: 'Password',
         component: Password,
-      }
-    ]
-  },
-  {
-    path: '/work',
-    name: 'work',
-    component: work,
-    redirect: '/work/worker',
-    children: [
-      {
-        path: 'worker/:username',
-        name: 'worker',
-        component: worker,
-        props: true
       },
       {
         path: 'come',
@@ -99,6 +88,35 @@ const routes = [
       }
     ]
   },
+  // {
+  //   path: '/work',
+  //   name: 'work',
+  //   component: work,
+  //   redirect: '/work/worker',
+  //   children: [
+  //     {
+  //       path: 'worker/:username',
+  //       name: 'worker',
+  //       component: worker,
+  //       props: true
+  //     },
+  //     {
+  //       path: 'come',
+  //       name: 'come',
+  //       component: come,
+  //     },
+  //     {
+  //       path: 'up',
+  //       name: 'up',
+  //       component: up,
+  //     },
+  //     {
+  //       path: 'pass',
+  //       name: 'pass',
+  //       component: pass,
+  //     }
+  //   ]
+  // },
   {
     path: '/',
     redirect: '/login'
@@ -109,15 +127,36 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 });
+const rolePermissions = {
+  employee: ['/home/main', '/home/add', '/home/EditUser', '/home/About', '/home/Update', '/home/Password'],
+  admin: ['/home/come', '/home/up', '/home/pass']
+};
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
+  const userInfo = localStorage.getItem('userInfo');
+
+  if (userInfo) {
+    const [userRole, username] = userInfo.split(':');
+    let role = (userRole === '管理员') ? 'admin' : 'employee';
+    if (role) {
+      const allowedRoutes = rolePermissions[role];
+      if (!allowedRoutes.includes(to.path)) {
+        return next();
+      } else {
+        ElMessage.error('没有权限');
+        return next('/login');
+      }
+    }
+  }
+
   if (!token && (to.path === '/login' || to.path === '/register')) {
     return next();
   }
   if (!token) {
     return next('/login');
   }
+
   next();
 });
 

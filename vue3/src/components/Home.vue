@@ -10,21 +10,30 @@
       <el-aside width="200px">
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="vertical" background-color="#fff"
           text-color="#000" active-text-color="#A4D1BE">
-          <router-link to="/home/About">
+          <router-link to="/home/About" v-if="role === 0">
             <el-menu-item index="1">关于我们</el-menu-item>
           </router-link>
-          <router-link to="/home/main">
+          <router-link to="/home/main" v-if="role === 0">
             <el-menu-item index="2">员工管理</el-menu-item>
           </router-link>
-          <router-link to="/home/add">
+          <router-link to="/home/add" v-if="role === 0">
             <el-menu-item index="3">员工入职</el-menu-item>
           </router-link>
-          <router-link to="/home/Update">
+          <router-link to="/home/Update" v-if="role === 0">
             <el-menu-item index="4">信息更新</el-menu-item>
           </router-link>
-          <router-link to="/home/Password">
+          <router-link to="/home/Password" v-if="role === 0">
             <el-menu-item index="5">修改密码</el-menu-item>
           </router-link>
+          <router-link to="/home/come" v-if="role === 1">
+              <el-menu-item index="1">加薪秘籍</el-menu-item>
+            </router-link>
+            <router-link to="/home/up" v-if="role === 1">
+              <el-menu-item index="2">信息更新</el-menu-item>
+            </router-link>
+            <router-link to="/home/pass" v-if="role === 1">
+              <el-menu-item index="3">修改密码</el-menu-item>
+            </router-link>
           <el-menu-item index="6">
             <a href="https://mly66.github.io/blog/" target="_blank">联系作者</a>
           </el-menu-item>
@@ -33,7 +42,7 @@
       </el-aside>
       <el-container>
         <el-main><router-view></router-view></el-main>
-        <el-footer>人事管理系统 ©2024 Created by Mly798798@163.com</el-footer>
+        <el-footer>赛博人力智联 ©2024 Created by Mly798798@163.com</el-footer>
       </el-container>
     </el-container>
   </el-container>
@@ -48,7 +57,13 @@ const activeIndex = ref('1');
 
 // 从 localStorage 获取用户信息
 const userInfo = ref(localStorage.getItem('userInfo') || '');
-
+const userRole = userInfo.value.split(':')[0];
+let role = ref(null);
+if (userRole === '管理员') {
+  role.value = 0;
+}else{
+  role.value = 1;
+}
 const tuichu = () => {
   router.push('/login');
   localStorage.removeItem('token');
